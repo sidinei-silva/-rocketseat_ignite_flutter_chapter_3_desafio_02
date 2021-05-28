@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/pages/login/login_page.dart';
 import 'package:split_it/pages/splash/splash_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -6,7 +7,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Split.it",
-      home: SplashPage(),
+      home: LoginPage(),
     );
   }
 }
