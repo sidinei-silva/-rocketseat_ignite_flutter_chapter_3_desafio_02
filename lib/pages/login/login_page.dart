@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:split_it/core/app_images.dart';
 import 'package:split_it/pages/login/login_controller.dart';
+import 'package:split_it/pages/login/login_state.dart';
 import 'package:split_it/pages/login/widgets/social_button/social_button_widget.dart';
 import 'package:split_it/theme/app_theme.dart';
 
@@ -10,7 +11,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final loginController = LoginController();
+  late LoginController loginController;
+
+  @override
+  void initState() {
+    loginController = LoginController(onUpdate: () {
+      setState(() {});
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,28 +66,33 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 32,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: Column(
-                  children: [
-                    SocialButtonWidget(
-                      label: "Entrar com Google",
-                      pathImage: AppImages.googleIcon,
-                      onPressed: () async {
-                        loginController.googleSignIn();
-                      },
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    // SocialButtonWidget(
-                    //   label: "Entrar com Apple",
-                    //   pathImage: AppImages.appleIcon,
-                    //   onPressed: () {},
-                    // ),
-                  ],
+              if (loginController.state is LoginStateLoading) ...[
+                CircularProgressIndicator(),
+              ] else if (loginController.state is LoginStateFailure) ...[
+                Text((loginController.state as LoginStateFailure).message)
+              ] else
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Column(
+                    children: [
+                      SocialButtonWidget(
+                        label: "Entrar com Google",
+                        pathImage: AppImages.googleIcon,
+                        onPressed: () async {
+                          loginController.googleSignIn();
+                        },
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      // SocialButtonWidget(
+                      //   label: "Entrar com Apple",
+                      //   pathImage: AppImages.appleIcon,
+                      //   onPressed: () {},
+                      // ),
+                    ],
+                  ),
                 ),
-              ),
             ],
           )
         ],
