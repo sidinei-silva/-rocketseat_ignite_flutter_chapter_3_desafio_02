@@ -80,11 +80,11 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 12,
                     ),
-                    SocialButtonWidget(
-                      label: "Entrar com Apple",
-                      pathImage: AppImages.appleIcon,
-                      onPressed: () {},
-                    ),
+                    // SocialButtonWidget(
+                    //   label: "Entrar com Apple",
+                    //   pathImage: AppImages.appleIcon,
+                    //   onPressed: () {},
+                    // ),
                   ],
                 ),
               ),
