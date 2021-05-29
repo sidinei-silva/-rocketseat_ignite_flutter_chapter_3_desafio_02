@@ -20,7 +20,7 @@ class SocialButtonWidget extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.white),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Container(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
