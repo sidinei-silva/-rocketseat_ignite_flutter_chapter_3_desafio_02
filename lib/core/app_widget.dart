@@ -7,7 +7,12 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Split.it",
-      home: SplashPage(),
+      initialRoute: "/splash",
+      routes: {
+        "/splash": (context) => SplashPage(),
+        "/login": (context) => LoginPage(),
+        "/error": (context) => LoginPage(),
+      },
     );
   }
 }
