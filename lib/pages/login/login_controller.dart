@@ -1,7 +1,11 @@
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'models/user_model.dart';
+
 class LoginController {
   Future<void> googleSignIn() async {
+    UserModel? user;
+
     GoogleSignIn _googleSignIn = GoogleSignIn(
       scopes: [
         'email',
@@ -10,7 +14,7 @@ class LoginController {
 
     try {
       final response = await _googleSignIn.signIn();
-      print(response);
+      user = UserModel.google(response!);
     } catch (error) {
       print(error);
     }
