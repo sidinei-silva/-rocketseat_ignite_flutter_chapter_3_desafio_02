@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:split_it/core/app_images.dart';
+import 'package:split_it/pages/login/login_controller.dart';
 import 'package:split_it/pages/login/widgets/social_button/social_button_widget.dart';
 import 'package:split_it/theme/app_theme.dart';
 
@@ -10,6 +10,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final loginController = LoginController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,18 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                       label: "Entrar com Google",
                       pathImage: AppImages.googleIcon,
                       onPressed: () async {
-                        GoogleSignIn _googleSignIn = GoogleSignIn(
-                          scopes: [
-                            'email',
-                          ],
-                        );
-
-                        try {
-                          final response = await _googleSignIn.signIn();
-                          print(response);
-                        } catch (error) {
-                          print(error);
-                        }
+                        loginController.googleSignIn();
                       },
                     ),
                     SizedBox(
