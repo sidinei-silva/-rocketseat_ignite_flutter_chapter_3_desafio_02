@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
+import 'package:split_it/pages/login/login_service.dart';
 import 'package:split_it/pages/login/login_state.dart';
 
 import 'models/user_model.dart';
@@ -8,26 +9,36 @@ class LoginController {
   UserModel? user;
   LoginState state = LoginStateEmpty();
   VoidCallback onUpdate;
+  final LoginService loginService;
+  Function(LoginState state)? onChange;
 
-  LoginController({required this.onUpdate});
+  LoginController({
+    this.user,
+    required this.onUpdate,
+    required this.loginService,
+  });
 
   Future<void> googleSignIn() async {
-    GoogleSignIn _googleSignIn = GoogleSignIn(
-      scopes: [
-        'email',
-      ],
-    );
-
     try {
       state = LoginStateLoading();
-      onUpdate();
-      final account = await _googleSignIn.signIn();
-      user = UserModel.google(account!);
-      state = LoginStateSuccess(user: user!);
-      onUpdate();
+      update();
+      final user = await loginService.googleSignIn();
+      state = LoginStateSuccess(user: user);
+      update();
     } catch (error) {
       state = LoginStateFailure(message: error.toString());
-      onUpdate();
+      update();
     }
+  }
+
+  void update() {
+    onUpdate();
+    if (onChange != null) {
+      onChange!(state);
+    }
+  }
+
+  void listen(Function(LoginState state) onChange) {
+    this.onChange = onChange;
   }
 }
