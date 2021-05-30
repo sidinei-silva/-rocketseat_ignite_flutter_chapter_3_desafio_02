@@ -10,6 +10,7 @@ class LoginController {
   LoginState state = LoginStateEmpty();
   VoidCallback onUpdate;
   final LoginService loginService;
+  Function(LoginState state)? onChange;
 
   LoginController({
     this.user,
@@ -20,13 +21,24 @@ class LoginController {
   Future<void> googleSignIn() async {
     try {
       state = LoginStateLoading();
-      onUpdate();
-      user = await loginService.googleSignIn();
-      state = LoginStateSuccess(user: user!);
-      onUpdate();
+      update();
+      final user = await loginService.googleSignIn();
+      state = LoginStateSuccess(user: user);
+      update();
     } catch (error) {
       state = LoginStateFailure(message: error.toString());
-      onUpdate();
+      update();
     }
+  }
+
+  void update() {
+    onUpdate();
+    if (onChange != null) {
+      onChange!(state);
+    }
+  }
+
+  void listen(Function(LoginState state) onChange) {
+    this.onChange = onChange;
   }
 }
