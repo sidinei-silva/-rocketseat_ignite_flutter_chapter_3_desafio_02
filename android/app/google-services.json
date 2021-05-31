@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "905913672072",
+    "project_id": "ignite-split-it",
+    "storage_bucket": "ignite-split-it.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905913672072:android:6711b3ad5063fcd9471a3d",
+        "android_client_info": {
+          "package_name": "com.example.split_it"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905913672072-fg1trlq0nia1t5tvo464b4k08njcta4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCa3-yaCHT2AcgnqwUjeTC-ZpWpALunnc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905913672072-fg1trlq0nia1t5tvo464b4k08njcta4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
