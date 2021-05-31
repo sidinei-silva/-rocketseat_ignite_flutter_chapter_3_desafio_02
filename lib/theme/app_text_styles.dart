@@ -5,6 +5,10 @@ import 'package:split_it/theme/app_theme.dart';
 abstract class AppTextStyles {
   TextStyle get title;
   TextStyle get button;
+  TextStyle get userNameAppBar;
+  TextStyle get cardBalanceLabel;
+  TextStyle get cardBalanceValueReceivable;
+  TextStyle get cardBalanceValuePayable;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -24,5 +28,32 @@ class AppTextStylesDefault implements AppTextStyles {
         color: AppTheme.colors.textButtonPrimary,
         fontWeight: FontWeight.w400,
         height: 1.4,
+      );
+
+  @override
+  TextStyle get userNameAppBar => GoogleFonts.montserrat(
+        fontSize: 24,
+        color: AppTheme.colors.textSecondary,
+        fontWeight: FontWeight.w700,
+      );
+
+  @override
+  TextStyle get cardBalanceLabel => GoogleFonts.inter(
+        fontSize: 14,
+        color: AppTheme.colors.cardBalanceLabel,
+        fontWeight: FontWeight.w400,
+      );
+
+  @override
+  TextStyle get cardBalanceValueReceivable => GoogleFonts.inter(
+        fontSize: 20,
+        color: AppTheme.colors.cardBalanceValueReceivable,
+        fontWeight: FontWeight.w600,
+      );
+  @override
+  TextStyle get cardBalanceValuePayable => GoogleFonts.inter(
+        fontSize: 20,
+        color: AppTheme.colors.cardBalanceValuePayable,
+        fontWeight: FontWeight.w600,
       );
 }
