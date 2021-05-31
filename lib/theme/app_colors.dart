@@ -8,6 +8,9 @@ abstract class AppColors {
   Color get textSecondary;
   Color get borderButtonAdd;
   Color get iconButtonAdd;
+  Color get cardBalanceLabel;
+  Color get cardBalanceValueReceivable;
+  Color get cardBalanceValuePayable;
 }
 
 class AppColorsDefault implements AppColors {
@@ -32,4 +35,12 @@ class AppColorsDefault implements AppColors {
   @override
   Color get iconButtonAdd => Color(0xFFF5F5F5);
 
+  @override
+  Color get cardBalanceLabel => Color(0xFF666666);
+
+  @override
+  Color get cardBalanceValueReceivable => Color(0xFF40B28C);
+
+  @override
+  Color get cardBalanceValuePayable => Color(0xFFE83F5B);
 }
