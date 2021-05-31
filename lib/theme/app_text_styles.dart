@@ -5,6 +5,7 @@ import 'package:split_it/theme/app_theme.dart';
 abstract class AppTextStyles {
   TextStyle get title;
   TextStyle get button;
+  TextStyle get userNameAppBar;
   TextStyle get cardBalanceLabel;
   TextStyle get cardBalanceValueReceivable;
   TextStyle get cardBalanceValuePayable;
@@ -27,6 +28,13 @@ class AppTextStylesDefault implements AppTextStyles {
         color: AppTheme.colors.textButtonPrimary,
         fontWeight: FontWeight.w400,
         height: 1.4,
+      );
+
+  @override
+  TextStyle get userNameAppBar => GoogleFonts.montserrat(
+        fontSize: 24,
+        color: AppTheme.colors.textSecondary,
+        fontWeight: FontWeight.w700,
       );
 
   @override
