@@ -7,7 +7,8 @@ import 'package:split_it/theme/app_theme.dart';
 
 class AppBarWidget extends PreferredSize {
   final UserModel user;
-  AppBarWidget({required this.user})
+  final VoidCallback buttonAddOnTap;
+  AppBarWidget({required this.user, required this.buttonAddOnTap})
       : super(
           preferredSize: Size.fromHeight(290),
           child: Container(
@@ -24,32 +25,22 @@ class AppBarWidget extends PreferredSize {
                     children: [
                       Container(
                         color: AppTheme.colors.backgroundSecondary,
-                        padding: const EdgeInsets.symmetric(horizontal: 19),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                    user.photoUrl!,
-                                    width: 56,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                Text(
-                                  "${user.name}",
-                                  style: AppTheme.textStyles.userNameAppBar,
-                                )
-                              ],
+                        padding: const EdgeInsets.symmetric(horizontal: 9),
+                        child: ListTile(
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              user.photoUrl!,
+                              width: 56,
                             ),
-                            ButtonAddWidget(
-                              onTap: () {},
-                            )
-                          ],
+                          ),
+                          title: Text(
+                            "${user.name}",
+                            style: AppTheme.textStyles.userNameAppBar,
+                          ),
+                          trailing: ButtonAddWidget(
+                            onTap: buttonAddOnTap,
+                          ),
                         ),
                       ),
                       SizedBox(
