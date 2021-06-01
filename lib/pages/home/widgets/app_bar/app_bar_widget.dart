@@ -9,55 +9,68 @@ class AppBarWidget extends PreferredSize {
   final UserModel user;
   AppBarWidget({required this.user})
       : super(
-          preferredSize: Size.fromHeight(244),
+          preferredSize: Size.fromHeight(290),
           child: Container(
-            height: 244,
-            color: AppTheme.colors.backgroundSecondary,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 19),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            color: AppTheme.colors.backgroundPrimary,
+            child: Stack(
+              children: [
+                Container(
+                  height: 244,
+                  color: AppTheme.colors.backgroundSecondary,
+                ),
+                SafeArea(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.network(
-                              user.photoUrl!,
-                              width: 56,
+                      Container(
+                        color: AppTheme.colors.backgroundSecondary,
+                        padding: const EdgeInsets.symmetric(horizontal: 19),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image.network(
+                                    user.photoUrl!,
+                                    width: 56,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 16,
+                                ),
+                                Text(
+                                  "${user.name}",
+                                  style: AppTheme.textStyles.userNameAppBar,
+                                )
+                              ],
                             ),
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Text(
-                            "${user.name}",
-                            style: AppTheme.textStyles.userNameAppBar,
-                          )
-                        ],
+                            ButtonAddWidget(
+                              onTap: () {},
+                            )
+                          ],
+                        ),
                       ),
-                      ButtonAddWidget(
-                        onTap: () {},
+                      SizedBox(
+                        height: 36,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 19),
+                        child: Row(
+                          children: [
+                            CardBalanceWidget.receivable(value: 124),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            CardBalanceWidget.payable(value: 48),
+                          ],
+                        ),
                       )
                     ],
                   ),
-                  Align(
-                    alignment: Alignment(0.0, 3.5),
-                    child: Row(
-                      children: [
-                        CardBalanceWidget.receivable(value: 124),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        CardBalanceWidget.payable(value: 48),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );
