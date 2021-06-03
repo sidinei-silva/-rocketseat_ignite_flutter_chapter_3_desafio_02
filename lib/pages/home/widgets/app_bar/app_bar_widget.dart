@@ -50,11 +50,11 @@ class AppBarWidget extends PreferredSize {
                         padding: const EdgeInsets.symmetric(horizontal: 19),
                         child: Row(
                           children: [
-                            CardBalanceWidget.receivable(value: 124),
+                            CardBalanceWidget(value: 124),
                             SizedBox(
                               width: 15,
                             ),
-                            CardBalanceWidget.payable(value: 48),
+                            CardBalanceWidget(value: -48),
                           ],
                         ),
                       )

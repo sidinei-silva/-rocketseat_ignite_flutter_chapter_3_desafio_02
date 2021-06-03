@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+
 import 'package:split_it/pages/home/widgets/icon_dollar/icon_dollar_widget.dart';
 import 'package:split_it/shared/format_helper.dart';
-
 import 'package:split_it/theme/app_theme.dart';
 
 class CardBalanceWidget extends StatelessWidget {
   final double value;
-  final TextStyle _style;
-  final String _label;
 
-  CardBalanceWidget.receivable({required double value})
-      : this.value = value,
-        this._style = AppTheme.textStyles.cardBalanceValueReceivable,
-        this._label = "A receber";
+  const CardBalanceWidget({
+    Key? key,
+    required this.value,
+  }) : super(key: key);
 
-  CardBalanceWidget.payable({required double value})
-      : this.value = value,
-        this._style = AppTheme.textStyles.cardBalanceValuePayable,
-        this._label = "A pagar";
+  TextStyle get textStyle => value >= 0
+      ? AppTheme.textStyles.cardBalanceValueReceivable
+      : AppTheme.textStyles.cardBalanceValuePayable;
+
+  String get label => value >= 0 ? 'A receber' : 'A pagar';
+
+  IconDollarWidget get iconDollar => value >= 0
+      ? IconDollarWidget(
+          iconDollarType: IconDollarType.receive,
+        )
+      : IconDollarWidget(
+          iconDollarType: IconDollarType.send,
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +47,12 @@ class CardBalanceWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconDollarWidget(iconDollarType: IconDollarType.receive),
+              iconDollar,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _label,
+                    label,
                     style: AppTheme.textStyles.cardBalanceLabel,
                   ),
                   SizedBox(
@@ -53,7 +60,7 @@ class CardBalanceWidget extends StatelessWidget {
                   ),
                   Text(
                     FormatHelper.formatCurrency(value),
-                    style: _style,
+                    style: textStyle,
                   )
                 ],
               )
