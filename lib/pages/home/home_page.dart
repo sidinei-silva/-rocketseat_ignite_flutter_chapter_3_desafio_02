@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBarWidget(
         user: user,
+        buttonAddOnTap: () {},
       ),
       body: Container(
         color: AppTheme.colors.backgroundPrimary,
