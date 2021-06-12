@@ -10,6 +10,9 @@ class EventTileWidget extends StatelessWidget {
   String get peopleFormatted =>
       data.people > 1 ? '${data.people} pessoas' : '${data.people} pessoa';
 
+  IconDollarType get iconDollarType =>
+      data.money >= 0 ? IconDollarType.receive : IconDollarType.send;
+
   const EventTileWidget({
     Key? key,
     required this.data,
@@ -31,7 +34,7 @@ class EventTileWidget extends StatelessWidget {
             style: AppTheme.textStyles.eventTileDate,
           ),
           leading: IconDollarWidget(
-            iconDollarType: IconDollarType.receive,
+            iconDollarType: iconDollarType,
           ),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
