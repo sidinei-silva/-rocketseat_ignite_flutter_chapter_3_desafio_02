@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:split_it/pages/home/widgets/icon_dollar/icon_dollar_widget.dart';
 import 'package:split_it/shared/format_helper.dart';
+import 'package:split_it/shared/models/event_model.dart';
 import 'package:split_it/theme/app_theme.dart';
 
 class EventTileWidget extends StatelessWidget {
-  final String title;
-  final DateTime date;
-  final double money;
-  final int people;
+  final EventModel data;
 
   String get peopleFormatted =>
-      people > 1 ? '$people pessoas' : '$people pessoa';
+      data.people > 1 ? '${data.people} pessoas' : '${data.people} pessoa';
 
   const EventTileWidget({
     Key? key,
-    required this.title,
-    required this.date,
-    required this.money,
-    required this.people,
+    required this.data,
   }) : super(key: key);
 
   @override
@@ -28,11 +23,11 @@ class EventTileWidget extends StatelessWidget {
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 24),
           title: Text(
-            title,
+            data.title,
             style: AppTheme.textStyles.eventTileTitle,
           ),
           subtitle: Text(
-            FormatHelper.formatDateToDayAndMonthExtensive(date),
+            FormatHelper.formatDateToDayAndMonthExtensive(data.date),
             style: AppTheme.textStyles.eventTileDate,
           ),
           leading: IconDollarWidget(
@@ -42,7 +37,7 @@ class EventTileWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                FormatHelper.formatCurrency(money),
+                FormatHelper.formatCurrency(data.money),
                 style: AppTheme.textStyles.eventTileMoney,
               ),
               Text(
