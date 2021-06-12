@@ -9,6 +9,12 @@ abstract class AppTextStyles {
   TextStyle get cardBalanceLabel;
   TextStyle get cardBalanceValueReceivable;
   TextStyle get cardBalanceValuePayable;
+
+  // Event Tile
+  TextStyle get eventTileTitle;
+  TextStyle get eventTileDate;
+  TextStyle get eventTileMoney;
+  TextStyle get eventTilePeople;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -55,5 +61,33 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 20,
         color: AppTheme.colors.cardBalanceValuePayable,
         fontWeight: FontWeight.w600,
+      );
+
+  @override
+  TextStyle get eventTileDate => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTileDate,
+      );
+
+  @override
+  TextStyle get eventTileMoney => GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTileMoney,
+      );
+
+  @override
+  TextStyle get eventTilePeople => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTilePeople,
+      );
+
+  @override
+  TextStyle get eventTileTitle => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: AppTheme.colors.eventTileTitle,
       );
 }
