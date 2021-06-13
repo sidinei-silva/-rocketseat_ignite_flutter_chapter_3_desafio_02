@@ -29,7 +29,24 @@ class _BalanceAppBarState extends State<BalanceAppBar> {
     switch (appBarController.appBarState.runtimeType) {
       case AppBarStateLoading:
         {
-          return CircularProgressIndicator();
+          return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 19),
+            child: Row(
+              children: [
+                CardBalanceWidget(
+                  value: 0,
+                  isLoading: true,
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                CardBalanceWidget(
+                  value: 0,
+                  isLoading: true,
+                ),
+              ],
+            ),
+          );
         }
       case AppBarStateSuccess:
         {
