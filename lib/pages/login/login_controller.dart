@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-
 import 'package:split_it/pages/login/login_service.dart';
 import 'package:split_it/pages/login/login_state.dart';
 
 import 'models/user_model.dart';
 
-class LoginController {
+class HomeController {
   UserModel? user;
   LoginState state = LoginStateEmpty();
   VoidCallback onUpdate;
   final LoginService loginService;
   Function(LoginState state)? onChange;
 
-  LoginController({
+  HomeController({
     this.user,
     required this.onUpdate,
     required this.loginService,

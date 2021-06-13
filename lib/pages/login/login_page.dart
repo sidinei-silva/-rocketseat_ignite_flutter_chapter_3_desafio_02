@@ -12,11 +12,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late LoginController loginController;
+  late HomeController loginController;
 
   @override
   void initState() {
-    loginController = LoginController(
+    loginController = HomeController(
         loginService: LoginServiceImplementation(),
         onUpdate: () {
           if (loginController.state is LoginStateSuccess) {
