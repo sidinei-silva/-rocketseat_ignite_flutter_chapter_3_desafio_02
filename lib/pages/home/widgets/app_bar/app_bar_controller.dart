@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:split_it/pages/home/repositories/home_repository.dart';
 import 'package:split_it/pages/home/repositories/home_repository_mock.dart';
 import 'package:split_it/pages/home/widgets/app_bar/app_bar_state.dart';
@@ -14,21 +13,18 @@ class AppBarController {
     this.homeRepository = homeRepository ?? HomeRepositoryMock();
   }
 
-  getDashboard(VoidCallback onUpdate) async {
-    appBarState = AppBarStateLoading();
-    update();
+  getDashboard() async {
+    update(AppBarStateLoading());
     try {
       final response = await homeRepository.getDashboard();
-      appBarState = AppBarStateSuccess(dashboard: response);
-      update();
+      update(AppBarStateSuccess(dashboard: response));
     } catch (e) {
-      appBarState = AppBarStateFailure(message: e.toString());
-      update();
+      update(AppBarStateFailure(message: e.toString()));
     }
-    onUpdate();
   }
 
-  void update() {
+  void update(AppBarState state) {
+    this.appBarState = state;
     if (onListen != null) {
       onListen!(appBarState);
     }

@@ -15,9 +15,12 @@ class _BalanceAppBarState extends State<BalanceAppBar> {
 
   @override
   void initState() {
-    appBarController.getDashboard(() {
-      setState(() {});
-    });
+    appBarController.getDashboard();
+    appBarController.listen(
+      (state) => {
+        setState(() {}),
+      },
+    );
     super.initState();
   }
 
