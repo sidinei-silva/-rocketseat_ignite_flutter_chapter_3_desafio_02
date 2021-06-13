@@ -31,7 +31,7 @@ void main() {
           )
         ]);
 
-    await homeController.getEvents(() {});
+    await homeController.getEvents();
     expect(states[0], isInstanceOf<HomeStateLoading>());
     expect(states[1], isInstanceOf<HomeStateSuccess>());
     expect(states.length, 2);
@@ -44,7 +44,7 @@ void main() {
 
     when(homeRepository.getEvents).thenThrow("Deu error");
 
-    await homeController.getEvents(() {});
+    await homeController.getEvents();
     expect(states[0], isInstanceOf<HomeStateLoading>());
     expect(states[1], isInstanceOf<HomeStateFailure>());
     expect((states[1] as HomeStateFailure).message, "Deu error");
@@ -55,13 +55,11 @@ void main() {
     homeController.homeState = HomeStateLoading();
     homeController
         .listen((state) => expect(state, isInstanceOf<HomeStateLoading>()));
-    homeController.update();
   });
 
   test("Testando o método update", () async {
     homeController.homeState = HomeStateLoading();
     homeController
         .listen((state) => expect(state, isInstanceOf<HomeStateLoading>()));
-    homeController.update();
   });
 }
