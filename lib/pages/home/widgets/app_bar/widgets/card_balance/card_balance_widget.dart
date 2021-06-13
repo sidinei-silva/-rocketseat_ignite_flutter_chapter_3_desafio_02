@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-
 import 'package:split_it/pages/home/widgets/icon_dollar/icon_dollar_widget.dart';
 import 'package:split_it/shared/format_helper.dart';
+import 'package:split_it/shared/widgets/loading_shimmer/loading_shimmer_widget.dart';
 import 'package:split_it/theme/app_theme.dart';
 
 class CardBalanceWidget extends StatelessWidget {
   final double value;
+  final bool isLoading;
 
   const CardBalanceWidget({
     Key? key,
     required this.value,
+    this.isLoading = false,
   }) : super(key: key);
 
   TextStyle get textStyle => value >= 0
@@ -58,10 +60,16 @@ class CardBalanceWidget extends StatelessWidget {
                   SizedBox(
                     height: 4,
                   ),
-                  Text(
-                    FormatHelper.formatCurrency(value),
-                    style: textStyle,
-                  )
+                  if (isLoading) ...[
+                    LoadingShimmerWidget(
+                      size: Size(120, 24),
+                    ),
+                  ] else ...[
+                    Text(
+                      FormatHelper.formatCurrency(value),
+                      style: textStyle,
+                    )
+                  ],
                 ],
               )
             ],
