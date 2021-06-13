@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:split_it/pages/home/widgets/icon_dollar/icon_dollar_widget.dart';
 import 'package:split_it/shared/format_helper.dart';
+import 'package:split_it/shared/widgets/loading_shimmer/loading_shimmer_widget.dart';
 import 'package:split_it/theme/app_theme.dart';
 
 class CardBalanceWidget extends StatelessWidget {
@@ -61,17 +61,9 @@ class CardBalanceWidget extends StatelessWidget {
                     height: 4,
                   ),
                   if (isLoading) ...[
-                    Opacity(
-                      opacity: 0.5,
-                      child: Shimmer.fromColors(
-                        baseColor: Colors.grey.shade300,
-                        highlightColor: Colors.grey.shade100,
-                        child: Container(
-                          height: 24,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
+                    LoadingShimmerWidget(
+                      size: Size(120, 24),
+                    ),
                   ] else ...[
                     Text(
                       FormatHelper.formatCurrency(value),
