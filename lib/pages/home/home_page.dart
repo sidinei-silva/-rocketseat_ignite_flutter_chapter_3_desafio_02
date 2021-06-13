@@ -30,8 +30,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: AppTheme.colors.backgroundPrimary,
       appBar: AppBarWidget(
-        receivable: 124,
-        payable: -48,
         user: user,
         buttonAddOnTap: () {},
       ),
