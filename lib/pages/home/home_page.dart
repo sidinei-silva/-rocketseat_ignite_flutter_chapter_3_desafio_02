@@ -1,49 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/pages/home/repositories/home_repository.dart';
+import 'package:split_it/pages/home/repositories/home_repository_mock.dart';
 import 'package:split_it/pages/home/widgets/app_bar/app_bar_widget.dart';
 import 'package:split_it/pages/home/widgets/event_tile/event_tile_widget.dart';
 import 'package:split_it/pages/login/models/user_model.dart';
 import 'package:split_it/shared/models/event_model.dart';
 import 'package:split_it/theme/app_theme.dart';
 
-class HomePage extends StatelessWidget {
-  final events = [
-    EventModel(
-      title: 'Churrasco',
-      date: DateTime.now(),
-      people: 5,
-      money: 32.0,
-    ),
-    EventModel(
-      title: 'Aniversario',
-      date: DateTime.now(),
-      people: 10,
-      money: -11.0,
-    ),
-    EventModel(
-      title: 'Festa',
-      date: DateTime.now(),
-      people: 0,
-      money: -20.0,
-    ),
-    EventModel(
-      title: 'Fogueira',
-      date: DateTime.now(),
-      people: 11,
-      money: 10.0,
-    ),
-    EventModel(
-      title: 'Natal',
-      date: DateTime.now(),
-      people: 5,
-      money: 15.0,
-    ),
-    EventModel(
-      title: 'Arraia',
-      date: DateTime.now(),
-      people: 5,
-      money: 25.0,
-    ),
-  ];
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final events = <EventModel>[];
+  late HomeRepository homeRepository;
+
+  void getEvents() async {
+    final response = await homeRepository.getEvents();
+    events.addAll(response);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    homeRepository = HomeRepositoryMock();
+    getEvents();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +37,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppTheme.colors.backgroundPrimary,
       appBar: AppBarWidget(
+        receivable: 124,
+        payable: -48,
         user: user,
         buttonAddOnTap: () {},
       ),

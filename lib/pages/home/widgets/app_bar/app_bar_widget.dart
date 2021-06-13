@@ -8,7 +8,14 @@ import 'package:split_it/theme/app_theme.dart';
 class AppBarWidget extends PreferredSize {
   final UserModel user;
   final VoidCallback buttonAddOnTap;
-  AppBarWidget({required this.user, required this.buttonAddOnTap})
+  final double receivable;
+  final double payable;
+
+  AppBarWidget(
+      {required this.receivable,
+      required this.payable,
+      required this.user,
+      required this.buttonAddOnTap})
       : super(
           preferredSize: Size.fromHeight(290),
           child: Container(
@@ -50,11 +57,11 @@ class AppBarWidget extends PreferredSize {
                         padding: const EdgeInsets.symmetric(horizontal: 19),
                         child: Row(
                           children: [
-                            CardBalanceWidget(value: 124),
+                            CardBalanceWidget(value: receivable),
                             SizedBox(
                               width: 15,
                             ),
-                            CardBalanceWidget(value: -48),
+                            CardBalanceWidget(value: payable),
                           ],
                         ),
                       )
