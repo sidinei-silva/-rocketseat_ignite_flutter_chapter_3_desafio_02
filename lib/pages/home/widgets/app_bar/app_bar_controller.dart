@@ -8,14 +8,33 @@ class AppBarController {
 
   AppBarState appBarState = AppBarStateEmpty();
 
-  AppBarController() {
-    homeRepository = HomeRepositoryMock();
+  Function(AppBarState state)? onListen;
+
+  AppBarController({HomeRepository? homeRepository}) {
+    this.homeRepository = homeRepository ?? HomeRepositoryMock();
   }
 
   getDashboard(VoidCallback onUpdate) async {
     appBarState = AppBarStateLoading();
-    final response = await homeRepository.getDashboard();
-    appBarState = AppBarStateSuccess(dashboard: response);
+    update();
+    try {
+      final response = await homeRepository.getDashboard();
+      appBarState = AppBarStateSuccess(dashboard: response);
+      update();
+    } catch (e) {
+      appBarState = AppBarStateFailure(message: e.toString());
+      update();
+    }
     onUpdate();
+  }
+
+  void update() {
+    if (onListen != null) {
+      onListen!(appBarState);
+    }
+  }
+
+  void listen(Function(AppBarState state) onChange) {
+    onListen = onChange;
   }
 }
