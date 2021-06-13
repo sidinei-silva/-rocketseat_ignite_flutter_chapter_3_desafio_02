@@ -11,6 +11,13 @@ abstract class AppColors {
   Color get cardBalanceLabel;
   Color get cardBalanceValueReceivable;
   Color get cardBalanceValuePayable;
+
+  // Event Tile
+  Color get eventTileTitle;
+  Color get eventTileDate;
+  Color get eventTileMoney;
+  Color get eventTilePeople;
+  Color get eventTileDivider;
 }
 
 class AppColorsDefault implements AppColors {
@@ -43,4 +50,19 @@ class AppColorsDefault implements AppColors {
 
   @override
   Color get cardBalanceValuePayable => Color(0xFFE83F5B);
+
+  @override
+  Color get eventTileDate => Color(0xFF666666);
+
+  @override
+  Color get eventTileMoney => Color(0xFF666666);
+
+  @override
+  Color get eventTilePeople => Color(0xFFA4B2AE);
+
+  @override
+  Color get eventTileTitle => Color(0xFF455250);
+
+  @override
+  Color get eventTileDivider => Color(0xFF666666);
 }
