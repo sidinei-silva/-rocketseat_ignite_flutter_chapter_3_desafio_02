@@ -16,8 +16,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    homeController.getEvents(() {
-      setState(() {});
+    homeController.getEvents();
+    homeController.listen((state) => {
+      setState(() {})
     });
     super.initState();
   }

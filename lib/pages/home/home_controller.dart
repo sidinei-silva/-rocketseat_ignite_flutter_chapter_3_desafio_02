@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:split_it/pages/home/home_state.dart';
 import 'package:split_it/pages/home/repositories/home_repository.dart';
 import 'package:split_it/pages/home/repositories/home_repository_mock.dart';
@@ -14,21 +13,18 @@ class HomeController {
     this.homeRepository = homeRepository ?? HomeRepositoryMock();
   }
 
-  getEvents(VoidCallback onUpdate) async {
-    homeState = HomeStateLoading();
-    update();
+  getEvents() async {
+    update(HomeStateLoading());
     try {
       final response = await homeRepository.getEvents();
-      homeState = HomeStateSuccess(events: response);
-      update();
+      update(HomeStateSuccess(events: response));
     } catch (e) {
-      homeState = HomeStateFailure(message: e.toString());
-      update();
+      update(HomeStateFailure(message: e.toString()));
     }
-    onUpdate();
   }
 
-  void update() {
+  void update(HomeState state) {
+    this.homeState = state;
     if (onListen != null) {
       onListen!(homeState);
     }

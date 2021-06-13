@@ -25,7 +25,7 @@ void main() {
     when(homeRepository.getDashboard)
         .thenAnswer((_) async => DashboardModel(receivable: 250, payable: -50));
 
-    await appBarController.getDashboard(() {});
+    await appBarController.getDashboard();
     expect(states[0], isInstanceOf<AppBarStateLoading>());
     expect(states[1], isInstanceOf<AppBarStateSuccess>());
     expect(states.length, 2);
@@ -38,7 +38,7 @@ void main() {
 
     when(homeRepository.getDashboard).thenThrow("Deu error");
 
-    await appBarController.getDashboard(() {});
+    await appBarController.getDashboard();
     expect(states[0], isInstanceOf<AppBarStateLoading>());
     expect(states[1], isInstanceOf<AppBarStateFailure>());
     expect((states[1] as AppBarStateFailure).message, "Deu error");
@@ -49,13 +49,11 @@ void main() {
     appBarController.appBarState = AppBarStateLoading();
     appBarController
         .listen((state) => expect(state, isInstanceOf<AppBarStateLoading>()));
-    appBarController.update();
   });
 
   test("Testando o método update", () async {
     appBarController.appBarState = AppBarStateLoading();
     appBarController
         .listen((state) => expect(state, isInstanceOf<AppBarStateLoading>()));
-    appBarController.update();
   });
 }
