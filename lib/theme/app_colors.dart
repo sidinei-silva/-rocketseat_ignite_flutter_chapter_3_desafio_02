@@ -18,6 +18,11 @@ abstract class AppColors {
   Color get eventTileMoney;
   Color get eventTilePeople;
   Color get eventTileDivider;
+
+  //Step Indicator
+  Color get stepIndicatorPrimary;
+  Color get stepIndicatorSecondary;
+  Color get backButton;
 }
 
 class AppColorsDefault implements AppColors {
@@ -65,4 +70,13 @@ class AppColorsDefault implements AppColors {
 
   @override
   Color get eventTileDivider => Color(0xFF666666);
+
+  @override
+  Color get stepIndicatorPrimary => Color(0xFF42BC8F);
+
+  @override
+  Color get stepIndicatorSecondary => Color(0xFF666666);
+
+  @override
+  Color get backButton => Color(0xFF666666);
 }

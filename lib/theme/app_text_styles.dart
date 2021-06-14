@@ -15,6 +15,10 @@ abstract class AppTextStyles {
   TextStyle get eventTileDate;
   TextStyle get eventTileMoney;
   TextStyle get eventTilePeople;
+
+  // Step Indicator
+  TextStyle get stepIndicatorPrimary;
+  TextStyle get stepIndicatorSecondary;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -89,5 +93,19 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 16,
         fontWeight: FontWeight.w600,
         color: AppTheme.colors.eventTileTitle,
+      );
+
+  @override
+  TextStyle get stepIndicatorPrimary => GoogleFonts.roboto(
+        fontSize: 14,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.stepIndicatorPrimary,
+      );
+
+  @override
+  TextStyle get stepIndicatorSecondary => GoogleFonts.roboto(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.stepIndicatorSecondary,
       );
 }
