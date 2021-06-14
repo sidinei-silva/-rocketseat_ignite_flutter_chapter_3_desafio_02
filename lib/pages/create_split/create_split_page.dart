@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/pages/create_split/widgets/create_split_app_bar/create_split_app_bar_widget.dart';
 import 'package:split_it/pages/create_split/widgets/stepper_next_button/stepper_next_button_widget.dart';
 import 'package:split_it/theme/app_theme.dart';
 
@@ -36,46 +37,16 @@ class _CreateSplitPageState extends State<CreateSplitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.colors.backgroundPrimary,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
-        child: SafeArea(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: AppTheme.colors.backButton,
-                  ),
-                  onPressed: () {
-                    if (index > 0) {
-                      previousPage();
-                    } else {
-                      Navigator.pop(context);
-                    }
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 24),
-                child: Text.rich(
-                  TextSpan(
-                    text: "0${index + 1}",
-                    style: AppTheme.textStyles.stepIndicatorPrimary,
-                    children: [
-                      TextSpan(
-                        text: "- 0${pages.length}",
-                        style: AppTheme.textStyles.stepIndicatorSecondary,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+      appBar: CreateSplitAppBarWidget(
+        actualPage: (index + 1),
+        lengthPages: pages.length,
+        onTapBack: () {
+          if (index > 0) {
+            previousPage();
+          } else {
+            Navigator.pop(context);
+          }
+        },
       ),
       body: pages[index],
       bottomNavigationBar: SafeArea(
