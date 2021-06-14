@@ -10,7 +10,7 @@ class CreateSplitPage extends StatefulWidget {
 
 class _CreateSplitPageState extends State<CreateSplitPage> {
   var pages = [
-    Container(color: Colors.red),
+    Container(color: Colors.white),
     Container(color: Colors.purple),
     Container(color: Colors.amber),
   ];
@@ -77,14 +77,51 @@ class _CreateSplitPageState extends State<CreateSplitPage> {
         ),
       ),
       body: pages[index],
-      floatingActionButton: index < 2
-          ? FloatingActionButton(
-              onPressed: () {
-                nextPage();
-              },
-              child: Icon(Icons.add),
-            )
-          : Container(),
+      bottomNavigationBar: SafeArea(
+        bottom: true,
+        child: Container(
+            height: 50,
+            child: Column(
+              children: [
+                Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextButton(
+                          child: Text(
+                            "CANCELAR",
+                            style: AppTheme.textStyles.stepperNextButtonText,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                      VerticalDivider(
+                        width: 1,
+                        thickness: 1,
+                      ),
+                      Expanded(
+                        child: TextButton(
+                          child: Text(
+                            "CONTINUAR",
+                            style: AppTheme.textStyles.stepperNextButtonText,
+                          ),
+                          onPressed: () {
+                            nextPage();
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            )),
+      ),
     );
   }
 }

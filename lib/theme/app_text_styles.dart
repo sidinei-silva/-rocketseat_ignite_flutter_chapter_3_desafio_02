@@ -19,6 +19,8 @@ abstract class AppTextStyles {
   // Step Indicator
   TextStyle get stepIndicatorPrimary;
   TextStyle get stepIndicatorSecondary;
+
+  TextStyle get stepperNextButtonText;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -107,5 +109,12 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 14,
         fontWeight: FontWeight.w400,
         color: AppTheme.colors.stepIndicatorSecondary,
+      );
+
+  @override
+  TextStyle get stepperNextButtonText => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppTheme.colors.stepperNextButtonText,
       );
 }
