@@ -31,7 +31,9 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: AppTheme.colors.backgroundPrimary,
       appBar: AppBarWidget(
         user: user,
-        buttonAddOnTap: () {},
+        buttonAddOnTap: () {
+          Navigator.pushNamed(context, "/create_split");
+        },
       ),
       body: SingleChildScrollView(
         child: Column(

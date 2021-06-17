@@ -18,6 +18,27 @@ abstract class AppColors {
   Color get eventTileMoney;
   Color get eventTilePeople;
   Color get eventTileDivider;
+
+  //Step Indicator
+  Color get stepIndicatorPrimary;
+  Color get stepIndicatorSecondary;
+  Color get backButton;
+
+  Color get stepperNextButtonText;
+  Color get stepperNextButtonTextDisabled;
+
+  Color get stepperTitle;
+  Color get stepperSubtitle;
+
+  Color get stepperHintTextField;
+  Color get stepperTextField;
+
+  Color get stepperInputBorder;
+
+  Color get personTileName;
+  Color get personTileNameAdded;
+  Color get personTileIconAdd;
+  Color get personTileIconRemove;
 }
 
 class AppColorsDefault implements AppColors {
@@ -65,4 +86,46 @@ class AppColorsDefault implements AppColors {
 
   @override
   Color get eventTileDivider => Color(0xFF666666);
+
+  @override
+  Color get stepIndicatorPrimary => Color(0xFF42BC8F);
+
+  @override
+  Color get stepIndicatorSecondary => Color(0xFF666666);
+
+  @override
+  Color get backButton => Color(0xFF666666);
+
+  @override
+  Color get stepperNextButtonText => Color(0xFF455250);
+
+  @override
+  Color get stepperSubtitle => Color(0xFF455250);
+
+  @override
+  Color get stepperTitle => Color(0xFF455250);
+
+  @override
+  Color get stepperHintTextField => Color(0xFF666666);
+
+  @override
+  Color get stepperTextField => Color(0xFF455250);
+
+  @override
+  Color get stepperInputBorder => Color(0xFF455250).withOpacity(0.2);
+
+  @override
+  Color get stepperNextButtonTextDisabled => Color(0xFF666666);
+
+  @override
+  Color get personTileIconAdd => Color(0xFF40B28C);
+
+  @override
+  Color get personTileIconRemove => Color(0xFFE83F5B);
+
+  @override
+  Color get personTileName => Color(0xFF666666);
+
+  @override
+  Color get personTileNameAdded => Color(0xFF455250);
 }
