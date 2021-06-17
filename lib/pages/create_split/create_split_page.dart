@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/pages/create_split/create_split_controller.dart';
+import 'package:split_it/pages/create_split/steps/step_one/step_one_page.dart';
 import 'package:split_it/pages/create_split/widgets/bottom_stepper_bar/bottom_stepper_bar_widget.dart';
 import 'package:split_it/pages/create_split/widgets/create_split_app_bar/create_split_app_bar_widget.dart';
 import 'package:split_it/theme/app_theme.dart';
@@ -11,11 +13,24 @@ class CreateSplitPage extends StatefulWidget {
 }
 
 class _CreateSplitPageState extends State<CreateSplitPage> {
-  var pages = [
-    Container(color: Colors.white),
-    Container(color: Colors.purple),
-    Container(color: Colors.amber),
-  ];
+  final controller = CreateSplitController();
+
+  late List<Widget> pages;
+
+  @override
+  void initState() {
+    pages = [
+      StepOnePage(
+        onChange: (value) {
+          controller.setEventName(value);
+          setState(() {});
+        },
+      ),
+      Container(color: Colors.purple),
+      Container(color: Colors.amber),
+    ];
+    super.initState();
+  }
 
   var index = 0;
 
@@ -50,10 +65,11 @@ class _CreateSplitPageState extends State<CreateSplitPage> {
       ),
       body: pages[index],
       bottomNavigationBar: BottomStepperBarWidget(
+        enabledButtons: controller.enableNavigateButton(),
         onTapCancel: () {
           Navigator.pop(context);
         },
-        onTapNext: (){
+        onTapNext: () {
           nextPage();
         },
       ),

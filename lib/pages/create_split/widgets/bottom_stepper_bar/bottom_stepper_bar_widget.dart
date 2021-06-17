@@ -5,10 +5,13 @@ class BottomStepperBarWidget extends StatelessWidget {
   final VoidCallback onTapCancel;
   final VoidCallback onTapNext;
 
+  final bool enabledButtons;
+
   const BottomStepperBarWidget({
     Key? key,
     required this.onTapCancel,
     required this.onTapNext,
+    this.enabledButtons = false,
   }) : super(key: key);
 
   @override
@@ -29,6 +32,7 @@ class BottomStepperBarWidget extends StatelessWidget {
                     Expanded(
                       child: StepperNextButtonWidget(
                         label: "cancelar",
+                        enabled: enabledButtons,
                         onTap: onTapCancel,
                       ),
                     ),
@@ -39,6 +43,7 @@ class BottomStepperBarWidget extends StatelessWidget {
                     Expanded(
                       child: StepperNextButtonWidget(
                         label: "continuar",
+                        enabled: enabledButtons,
                         onTap: onTapNext,
                       ),
                     )
