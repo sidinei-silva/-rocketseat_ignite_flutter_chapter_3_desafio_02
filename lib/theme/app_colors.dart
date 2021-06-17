@@ -34,6 +34,11 @@ abstract class AppColors {
   Color get stepperTextField;
 
   Color get stepperInputBorder;
+
+  Color get personTileName;
+  Color get personTileNameAdded;
+  Color get personTileIconAdd;
+  Color get personTileIconRemove;
 }
 
 class AppColorsDefault implements AppColors {
@@ -111,4 +116,16 @@ class AppColorsDefault implements AppColors {
 
   @override
   Color get stepperNextButtonTextDisabled => Color(0xFF666666);
+
+  @override
+  Color get personTileIconAdd => Color(0xFF40B28C);
+
+  @override
+  Color get personTileIconRemove => Color(0xFFE83F5B);
+
+  @override
+  Color get personTileName => Color(0xFF666666);
+
+  @override
+  Color get personTileNameAdded => Color(0xFF455250);
 }

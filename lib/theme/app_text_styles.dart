@@ -28,6 +28,9 @@ abstract class AppTextStyles {
 
   TextStyle get stepperHintTextField;
   TextStyle get stepperTextField;
+
+  TextStyle get personTileName;
+  TextStyle get personTileNameAdded;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -157,5 +160,19 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 16,
         fontWeight: FontWeight.w500,
         color: AppTheme.colors.stepperTextField,
+      );
+
+  @override
+  TextStyle get personTileName => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: AppTheme.colors.personTileName,
+      );
+
+  @override
+  TextStyle get personTileNameAdded => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: AppTheme.colors.personTileNameAdded,
       );
 }
