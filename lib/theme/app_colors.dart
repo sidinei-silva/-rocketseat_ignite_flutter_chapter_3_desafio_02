@@ -112,7 +112,7 @@ class AppColorsDefault implements AppColors {
   Color get stepperTextField => Color(0xFF455250);
 
   @override
-  Color get stepperInputBorder => Color(0xFF455250);
+  Color get stepperInputBorder => Color(0xFF455250).withOpacity(0.2);
 
   @override
   Color get stepperNextButtonTextDisabled => Color(0xFF666666);

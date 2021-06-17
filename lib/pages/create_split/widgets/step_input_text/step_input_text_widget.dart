@@ -4,39 +4,51 @@ import 'package:split_it/theme/app_theme.dart';
 class StepInputTextWidget extends StatelessWidget {
   final Function(String value) onChange;
   final String hintText;
+  final TextAlign textAlign;
+  final EdgeInsets padding;
+  final disabledBorder;
 
-  const StepInputTextWidget({
-    Key? key,
-    required this.onChange,
-    required this.hintText,
-  }) : super(key: key);
+  const StepInputTextWidget(
+      {Key? key,
+      required this.onChange,
+      required this.hintText,
+      this.textAlign = TextAlign.center,
+      this.padding = const EdgeInsets.symmetric(horizontal: 64),
+      this.disabledBorder = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 64),
+      padding: padding,
       child: TextField(
         onChanged: onChange,
-        textAlign: TextAlign.center,
+        textAlign: textAlign,
         style: AppTheme.textStyles.stepperTextField,
         cursorColor: AppTheme.colors.backgroundSecondary,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: AppTheme.textStyles.stepperHintTextField,
           enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: AppTheme.colors.stepperInputBorder,
-            ),
+            borderSide: disabledBorder
+                ? BorderSide.none
+                : BorderSide(
+                    color: AppTheme.colors.stepperInputBorder,
+                  ),
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: AppTheme.colors.stepperInputBorder,
-            ),
+            borderSide: disabledBorder
+                ? BorderSide.none
+                : BorderSide(
+                    color: AppTheme.colors.stepperInputBorder,
+                  ),
           ),
           border: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: AppTheme.colors.stepperInputBorder,
-            ),
+            borderSide: disabledBorder
+                ? BorderSide.none
+                : BorderSide(
+                    color: AppTheme.colors.stepperInputBorder,
+                  ),
           ),
         ),
       ),
