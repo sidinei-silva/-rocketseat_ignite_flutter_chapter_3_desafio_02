@@ -8,13 +8,13 @@ import 'package:split_it/pages/login/models/user_model.dart';
 class LoginServiceMock extends Mock implements LoginService {}
 
 void main() {
-  late HomeController loginController;
+  late LoginController loginController;
   late LoginService loginService;
 
   setUp(() {
     loginService = LoginServiceMock();
 
-    loginController = HomeController(
+    loginController = LoginController(
       onUpdate: () {},
       loginService: loginService,
     );
