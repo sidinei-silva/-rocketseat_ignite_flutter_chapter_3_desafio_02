@@ -1,27 +1,41 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
 part of 'login_controller.dart';
 
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+
 mixin _$LoginController on _LoginControllerBase, Store {
-  final _$statusAtom = Atom(name: '_LoginControllerBase.state');
+  final _$stateAtom = Atom(name: '_LoginControllerBase.state');
 
   @override
   LoginState get state {
-    _$statusAtom.context.enforceReadPolicy(_$statusAtom);
-    _$statusAtom.reportObserved();
+    _$stateAtom.reportRead();
     return super.state;
   }
 
   @override
   set state(LoginState value) {
-    _$statusAtom.context.conditionallyRunInAction(() {
+    _$stateAtom.reportWrite(value, super.state, () {
       super.state = value;
-      _$statusAtom.reportChanged();
-    }, _$statusAtom, name: '${_$statusAtom}_set');
+    });
   }
 
-  final _$googleSignInAsyncAction = AsyncAction("LoginController");
+  final _$googleSignInAsyncAction =
+      AsyncAction('_LoginControllerBase.googleSignIn');
 
   @override
   Future<void> googleSignIn() {
     return _$googleSignInAsyncAction.run(() => super.googleSignIn());
+  }
+
+  @override
+  String toString() {
+    return '''
+state: ${state}
+    ''';
   }
 }
