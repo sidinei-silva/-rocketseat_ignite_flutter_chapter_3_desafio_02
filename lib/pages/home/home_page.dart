@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:split_it/pages/home/home_controller.dart';
 import 'package:split_it/pages/home/home_state.dart';
 import 'package:split_it/pages/home/widgets/app_bar/app_bar_widget.dart';
@@ -18,7 +19,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     homeController.getEvents();
-    homeController.listen((state) => {setState(() {})});
     super.initState();
   }
 
@@ -38,26 +38,38 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            if (homeController.homeState is HomeStateLoading) ...[
-              ...List.generate(
-                4,
-                (index) => EventTileWidget(
-                  isLoading: true,
-                  data: EventModel(
-                    date: DateTime.now(),
-                    money: 0,
-                    people: 0,
-                    title: '',
+            Observer(builder: (context) {
+              if (homeController.homeState is HomeStateLoading) {
+                return Column(
+                  children: List.generate(
+                    4,
+                    (index) => EventTileWidget(
+                      isLoading: true,
+                      data: EventModel(
+                        date: DateTime.now(),
+                        money: 0,
+                        people: 0,
+                        title: '',
+                      ),
+                    ),
                   ),
-                ),
-              )
-            ] else if (homeController.homeState is HomeStateSuccess) ...[
-              ...(homeController.homeState as HomeStateSuccess).events.map(
-                    (event) => EventTileWidget(data: event),
-                  )
-            ] else if (homeController.homeState is HomeStateFailure) ...[
-              Text((homeController.homeState as HomeStateFailure).message)
-            ]
+                );
+              } else if (homeController.homeState is HomeStateSuccess) {
+                return Column(
+                  children: (homeController.homeState as HomeStateSuccess)
+                      .events
+                      .map(
+                        (event) => EventTileWidget(data: event),
+                      )
+                      .toList(),
+                );
+              } else if (homeController.homeState is HomeStateFailure) {
+                return Text(
+                    (homeController.homeState as HomeStateFailure).message);
+              } else {
+                return Container();
+              }
+            })
           ],
         ),
       ),

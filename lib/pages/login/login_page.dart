@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:split_it/core/app_images.dart';
 import 'package:split_it/pages/login/login_controller.dart';
 import 'package:split_it/pages/login/login_service.dart';
@@ -12,20 +14,18 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late HomeController loginController;
+  late LoginController loginController;
 
   @override
   void initState() {
-    loginController = HomeController(
-        loginService: LoginServiceImplementation(),
-        onUpdate: () {
-          if (loginController.state is LoginStateSuccess) {
-            final user = (loginController.state as LoginStateSuccess).user;
-            Navigator.pushReplacementNamed(context, "/home", arguments: user);
-          } else {
-            setState(() {});
-          }
-        });
+    loginController =
+        LoginController(loginService: LoginServiceImplementation());
+    autorun((_) {
+      if (loginController.state is LoginStateSuccess) {
+        final user = (loginController.state as LoginStateSuccess).user;
+        Navigator.pushReplacementNamed(context, "/home", arguments: user);
+      }
+    });
     super.initState();
   }
 
@@ -74,33 +74,31 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 32,
               ),
-              if (loginController.state is LoginStateLoading) ...[
-                CircularProgressIndicator(),
-              ] else if (loginController.state is LoginStateFailure) ...[
-                Text((loginController.state as LoginStateFailure).message)
-              ] else
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: Column(
-                    children: [
-                      SocialButtonWidget(
-                        label: "Entrar com Google",
-                        pathImage: AppImages.googleIcon,
-                        onPressed: () async {
-                          loginController.googleSignIn();
-                        },
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      // SocialButtonWidget(
-                      //   label: "Entrar com Apple",
-                      //   pathImage: AppImages.appleIcon,
-                      //   onPressed: () {},
-                      // ),
-                    ],
-                  ),
-                ),
+              Observer(builder: (context) {
+                if (loginController.state is LoginStateLoading)
+                  return CircularProgressIndicator();
+                else if (loginController.state is LoginStateFailure)
+                  return Text(
+                      (loginController.state as LoginStateFailure).message);
+                else
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: Column(
+                      children: [
+                        SocialButtonWidget(
+                          label: "Entrar com Google",
+                          pathImage: AppImages.googleIcon,
+                          onPressed: () async {
+                            loginController.googleSignIn();
+                          },
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                      ],
+                    ),
+                  );
+              })
             ],
           )
         ],
