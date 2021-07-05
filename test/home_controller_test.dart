@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mobx/mobx.dart' as mobx;
 import 'package:mocktail/mocktail.dart';
 import 'package:split_it/pages/home/home_controller.dart';
 import 'package:split_it/pages/home/home_state.dart';
@@ -20,7 +21,10 @@ void main() {
   test("Testando o GetEvents - Retornando sucesso", () async {
     expect(homeController.homeState, isInstanceOf<HomeStateEmpty>());
     final states = <HomeState>[];
-    homeController.listen((state) => states.add(state));
+
+    mobx.autorun((_) {
+      states.add(homeController.homeState);
+    });
 
     when(homeRepository.getEvents).thenAnswer((_) async => [
           EventModel(
@@ -32,20 +36,22 @@ void main() {
         ]);
 
     await homeController.getEvents();
-    expect(states[0], isInstanceOf<HomeStateLoading>());
-    expect(states[1], isInstanceOf<HomeStateSuccess>());
-    expect(states.length, 2);
+    expect(states[0], isInstanceOf<HomeStateEmpty>());
+    expect(states[1], isInstanceOf<HomeStateLoading>());
+    expect(states[2], isInstanceOf<HomeStateSuccess>());
+    expect(states.length, 3);
   });
 
   test("Testando o GetEvents - Retornando falha", () async {
     expect(homeController.homeState, isInstanceOf<HomeStateEmpty>());
     final states = <HomeState>[];
-    homeController.listen((state) => states.add(state));
+
+    mobx.autorun((_) => {states.add(homeController.homeState)});
 
     when(homeRepository.getEvents).thenThrow("Deu error");
 
     await homeController.getEvents();
-    expect(states[0], isInstanceOf<HomeStateLoading>());
+    expect(states[0], isInstanceOf<HomeStateEmpty>());
     expect(states[1], isInstanceOf<HomeStateFailure>());
     expect((states[1] as HomeStateFailure).message, "Deu error");
     expect(states.length, 2);
@@ -53,13 +59,13 @@ void main() {
 
   test("Testando o método listen", () async {
     homeController.homeState = HomeStateLoading();
-    homeController
-        .listen((state) => expect(state, isInstanceOf<HomeStateLoading>()));
-  });
-
-  test("Testando o método update", () async {
-    homeController.homeState = HomeStateLoading();
-    homeController
-        .listen((state) => expect(state, isInstanceOf<HomeStateLoading>()));
+    mobx.autorun(
+      (_) => {
+        expect(
+          homeController.homeState,
+          isInstanceOf<HomeStateLoading>(),
+        )
+      },
+    );
   });
 }
