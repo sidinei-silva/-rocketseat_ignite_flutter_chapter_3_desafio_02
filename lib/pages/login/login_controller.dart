@@ -9,29 +9,31 @@ class LoginController {
   LoginState get state => this._state.value;
   set state(LoginState state) => _state.value = state;
 
+  final _actionController = ActionController();
+
   LoginController({
     required this.loginService,
   });
 
-  void update(LoginState state) {
-    var action = Action(() {
-      this.state = state;
-    });
-
-    action();
-  }
-
   Future<void> googleSignIn() async {
+    final actionName = "LoginController.googleSignIn";
+    _actionController.startAction(name: actionName);
+    final startTime = DateTime.now();
+
     try {
-      update(LoginStateLoading());
+      state = LoginStateLoading();
       final user = await loginService.googleSignIn();
-      update(LoginStateSuccess(user: user));
+      state = LoginStateSuccess(user: user);
     } catch (error) {
-      update(
-        LoginStateFailure(
-          message: error.toString(),
-        ),
+      state = LoginStateFailure(
+        message: error.toString(),
       );
     }
+    _actionController.endAction(
+      ActionRunInfo(
+        name: actionName,
+        startTime: startTime,
+      ),
+    );
   }
 }
