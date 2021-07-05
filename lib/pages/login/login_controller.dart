@@ -2,24 +2,20 @@ import 'package:mobx/mobx.dart';
 import 'package:split_it/pages/login/login_service.dart';
 import 'package:split_it/pages/login/login_state.dart';
 
-class LoginController {
+part 'login_controller.g.dart';
+
+class LoginController = _LoginControllerBase with _$LoginController;
+
+class _LoginControllerBase with Store {
   final LoginService loginService;
-  final _state = Observable<LoginState>(LoginStateEmpty());
 
-  LoginState get state => this._state.value;
-  set state(LoginState state) => _state.value = state;
-
-  final _actionController = ActionController();
-
-  LoginController({
+  _LoginControllerBase({
     required this.loginService,
   });
 
-  Future<void> googleSignIn() async {
-    final actionName = "LoginController.googleSignIn";
-    _actionController.startAction(name: actionName);
-    final startTime = DateTime.now();
+  LoginState state = LoginStateEmpty();
 
+  Future<void> googleSignIn() async {
     try {
       state = LoginStateLoading();
       final user = await loginService.googleSignIn();
@@ -29,11 +25,5 @@ class LoginController {
         message: error.toString(),
       );
     }
-    _actionController.endAction(
-      ActionRunInfo(
-        name: actionName,
-        startTime: startTime,
-      ),
-    );
   }
 }
