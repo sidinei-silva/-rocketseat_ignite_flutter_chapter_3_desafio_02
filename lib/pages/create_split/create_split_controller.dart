@@ -23,12 +23,15 @@ abstract class _CreateSplitController with Store {
     }
   }
 
+  @observable
   String eventName = "";
 
-  bool enableNavigateButton() {
+  @computed
+  bool get enableNavigateButton {
     return eventName.isNotEmpty;
   }
 
+  @action
   void setEventName(String name) {
     this.eventName = name;
   }

@@ -50,7 +50,7 @@ class _CreateSplitPageState extends State<CreateSplitPage> {
         },
       ),
       bottomNavigationBar: BottomStepperBarWidget(
-        enabledButtons: controller.enableNavigateButton(),
+        controller: controller,
         onTapCancel: () {
           Navigator.pop(context);
         },
