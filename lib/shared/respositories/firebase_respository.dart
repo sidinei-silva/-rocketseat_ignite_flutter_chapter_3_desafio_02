@@ -15,14 +15,24 @@ class FirebaseRespository<T extends BaseModel> {
     }
   }
 
+  Future<List<Map<String, dynamic>>> get(String collection) async {
+    try {
+      final response = await this.firestore.collection(collection).get();
+      return response.docs.map((e) => e.data()).toList();
+    } catch (e) {
+      throw e;
+    }
+  }
+
   update() {}
-  get() {}
+
   delete() {}
 
-  Future<List<Map<String, dynamic>>> where(
-      {required String key,
-      required String value,
-      required String collection}) async {
+  Future<List<Map<String, dynamic>>> where({
+    required String key,
+    required String value,
+    required String collection,
+  }) async {
     try {
       final response = await firestore
           .collection(collection)
