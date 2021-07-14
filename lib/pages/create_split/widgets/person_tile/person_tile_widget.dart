@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/shared/models/friend_model.dart';
 import 'package:split_it/theme/app_theme.dart';
 
 class PersonTileWidget extends StatelessWidget {
-  final String name;
+  final FriendModel data;
   final bool isRemoved;
+  final VoidCallback onPressed;
 
   const PersonTileWidget({
     Key? key,
-    required this.name,
     this.isRemoved = false,
+    required this.onPressed,
+    required this.data,
   }) : super(key: key);
 
   @override
@@ -18,11 +21,15 @@ class PersonTileWidget extends StatelessWidget {
           width: 40,
           height: 40,
           decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(data.photoUrl),
+              fit: BoxFit.cover,
+            ),
             color: Colors.grey.shade200,
             borderRadius: BorderRadius.circular(10),
           )),
       title: Text(
-        name,
+        data.name,
         style: isRemoved
             ? AppTheme.textStyles.personTileNameAdded
             : AppTheme.textStyles.personTileName,
@@ -37,7 +44,7 @@ class PersonTileWidget extends StatelessWidget {
                 Icons.add,
                 color: AppTheme.colors.personTileIconAdd,
               ),
-        onPressed: () {},
+        onPressed: onPressed,
       ),
     );
   }
