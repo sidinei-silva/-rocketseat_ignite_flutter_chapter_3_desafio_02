@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:split_it/pages/create_split/create_split_controller.dart';
+
 import 'package:split_it/pages/create_split/steps/step_two/step_two_controller.dart';
 import 'package:split_it/pages/create_split/widgets/person_tile/person_tile_widget.dart';
 import 'package:split_it/pages/create_split/widgets/step_input_text/step_input_text_widget.dart';
 import 'package:split_it/pages/create_split/widgets/step_title/step_title_widget.dart';
 
 class StepTwoPage extends StatefulWidget {
-  StepTwoPage({Key? key}) : super(key: key);
+  final CreateSplitController createSplitController;
+
+  StepTwoPage({
+    Key? key,
+    required this.createSplitController,
+  }) : super(key: key);
 
   @override
   _StepTwoPageState createState() => _StepTwoPageState();
 }
 
 class _StepTwoPageState extends State<StepTwoPage> {
-  final controller = StepTwoController();
+  late StepTwoController controller;
 
   @override
   void initState() {
+    controller = StepTwoController(
+      createSplitController: widget.createSplitController,
+    );
     controller.getFriends();
     super.initState();
   }
