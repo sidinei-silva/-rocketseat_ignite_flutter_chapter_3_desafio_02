@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:split_it/pages/home/widgets/app_bar/widgets/balance_app_bar/balance_app_bar.dart';
 import 'package:split_it/pages/home/widgets/app_bar/widgets/button_add/button_add_widget.dart';
-import 'package:split_it/pages/home/widgets/app_bar/widgets/card_balance/card_balance_widget.dart';
 import 'package:split_it/pages/login/models/user_model.dart';
 import 'package:split_it/theme/app_theme.dart';
 
 class AppBarWidget extends PreferredSize {
   final UserModel user;
   final VoidCallback buttonAddOnTap;
+
   AppBarWidget({required this.user, required this.buttonAddOnTap})
       : super(
           preferredSize: Size.fromHeight(290),
@@ -46,18 +47,7 @@ class AppBarWidget extends PreferredSize {
                       SizedBox(
                         height: 36,
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 19),
-                        child: Row(
-                          children: [
-                            CardBalanceWidget(value: 124),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            CardBalanceWidget(value: -48),
-                          ],
-                        ),
-                      )
+                      BalanceAppBar()
                     ],
                   ),
                 ),

@@ -9,6 +9,28 @@ abstract class AppTextStyles {
   TextStyle get cardBalanceLabel;
   TextStyle get cardBalanceValueReceivable;
   TextStyle get cardBalanceValuePayable;
+
+  // Event Tile
+  TextStyle get eventTileTitle;
+  TextStyle get eventTileDate;
+  TextStyle get eventTileMoney;
+  TextStyle get eventTilePeople;
+
+  // Step Indicator
+  TextStyle get stepIndicatorPrimary;
+  TextStyle get stepIndicatorSecondary;
+
+  TextStyle get stepperNextButtonText;
+  TextStyle get stepperNextButtonTextDisabled;
+
+  TextStyle get stepperTitle;
+  TextStyle get stepperSubtitle;
+
+  TextStyle get stepperHintTextField;
+  TextStyle get stepperTextField;
+
+  TextStyle get personTileName;
+  TextStyle get personTileNameAdded;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -55,5 +77,102 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 20,
         color: AppTheme.colors.cardBalanceValuePayable,
         fontWeight: FontWeight.w600,
+      );
+
+  @override
+  TextStyle get eventTileDate => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTileDate,
+      );
+
+  @override
+  TextStyle get eventTileMoney => GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTileMoney,
+      );
+
+  @override
+  TextStyle get eventTilePeople => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTilePeople,
+      );
+
+  @override
+  TextStyle get eventTileTitle => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: AppTheme.colors.eventTileTitle,
+      );
+
+  @override
+  TextStyle get stepIndicatorPrimary => GoogleFonts.roboto(
+        fontSize: 14,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.stepIndicatorPrimary,
+      );
+
+  @override
+  TextStyle get stepIndicatorSecondary => GoogleFonts.roboto(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.stepIndicatorSecondary,
+      );
+
+  @override
+  TextStyle get stepperNextButtonText => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppTheme.colors.stepperNextButtonText,
+      );
+  @override
+  TextStyle get stepperNextButtonTextDisabled => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppTheme.colors.stepperNextButtonTextDisabled,
+      );
+
+  @override
+  TextStyle get stepperSubtitle => GoogleFonts.inter(
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.stepperTitle,
+      );
+
+  @override
+  TextStyle get stepperTitle => GoogleFonts.inter(
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.stepperTitle,
+      );
+
+  @override
+  TextStyle get stepperHintTextField => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.stepperHintTextField,
+      );
+
+  @override
+  TextStyle get stepperTextField => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: AppTheme.colors.stepperTextField,
+      );
+
+  @override
+  TextStyle get personTileName => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: AppTheme.colors.personTileName,
+      );
+
+  @override
+  TextStyle get personTileNameAdded => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: AppTheme.colors.personTileNameAdded,
       );
 }
