@@ -11,13 +11,12 @@ class AppBarWidget extends PreferredSize {
 
   AppBarWidget({required this.user, required this.buttonAddOnTap})
       : super(
-          preferredSize: Size.fromHeight(290),
+          preferredSize: Size.fromHeight(108),
           child: Container(
             color: AppTheme.colors.backgroundPrimary,
             child: Stack(
               children: [
                 Container(
-                  height: 244,
                   color: AppTheme.colors.backgroundSecondary,
                 ),
                 SafeArea(
@@ -44,10 +43,6 @@ class AppBarWidget extends PreferredSize {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 36,
-                      ),
-                      BalanceAppBar()
                     ],
                   ),
                 ),
